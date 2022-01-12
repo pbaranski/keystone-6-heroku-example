@@ -43,7 +43,16 @@ export default withAuth(
       useMigrations: true,
       url: DATABASE_URL,
     },
-    server: { port: PORT },
+    server: { 
+      port: PORT,
+      extendExpressApp: (app, createContext) => {
+        app.use('/rest', async (req, res, next) => {
+          (req as any).context = await createContext(req, res);
+          next();
+        });
+        app.get('/rest/tasks', getTasks);
+      },      
+    },
     lists,
     // We add our session configuration to the system here.
     session,
