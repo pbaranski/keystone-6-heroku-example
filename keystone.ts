@@ -6,6 +6,7 @@ import { statelessSessions } from '@keystone-6/core/session';
 import { createAuth } from '@keystone-6/auth';
 import { lists } from './schema';
 import { PORT, DATABASE_URL, SESSION_MAX_AGE, SESSION_SECRET } from './config';
+import { getTasks } from './routes/tasks';
 
 // createAuth configures signin functionality based on the config below. Note this only implements
 // authentication, i.e signing in as an item using identity and secret fields in a list. Session
